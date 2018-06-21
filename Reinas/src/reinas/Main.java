@@ -20,15 +20,19 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic 
-       
-        int cantidadTableros = Integer.valueOf(JOptionPane.showInputDialog(null, "Indique la cantidad de retadores"));
+        int cantidadTableros; 
+        int entreLlegadas; 
+        int desviacion;
+        do{
+        cantidadTableros = Integer.valueOf(JOptionPane.showInputDialog(null, "Indique la cantidad de retadores"));
       //  System.out.println("Entrada: "+ cantidadTableros);
       
-        int entreLlegadas = Integer.valueOf(JOptionPane.showInputDialog(null, "Indique el tiempo entre llegada de los retadores" ));
-        int desviacion = Integer.valueOf(JOptionPane.showInputDialog(null, "Indique la desviacion del tiempo entre llegadas"));
+        entreLlegadas = Integer.valueOf(JOptionPane.showInputDialog(null, "Indique el tiempo entre llegada de los retadores" ));
+        desviacion = Integer.valueOf(JOptionPane.showInputDialog(null, "Indique la desviacion del tiempo entre llegadas"));
+        }
+        while(cantidadTableros == 0 || entreLlegadas == 0 || desviacion == 0);
         
-        
-        
+    
         Maestro master = new Maestro(cantidadTableros);
         master.setEntreLlegadas(entreLlegadas);
         master.setDesviacion(desviacion);
@@ -37,7 +41,7 @@ public class Main {
         master.mostrarSoluciones();
         
         master.mostrarReporte();
-
+      
        
     
        

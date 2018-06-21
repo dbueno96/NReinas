@@ -73,11 +73,7 @@ public class Maestro {
     }
 
     private void crearTableros() {
-        /*        for (Tablero a : tableros) {
-            a = new Tablero(8);
-         //   master.getCola().add(a);
-        }
-         */
+    
         for (int i = 0; i < tableros.length; i++) {
             Random rand = new Random();
             if (rand.nextInt(10) > 5) {
@@ -280,7 +276,10 @@ public class Maestro {
         for (int i = 1; i < tableros.length; i++) {
             suma += tableros[i].getTiempoCola();
         }
-        return suma / (tableros.length - 1);
+        if(tableros.length == 1)
+            return 0;
+        else 
+            return suma / (tableros.length - 1);
 
     }
 
@@ -306,21 +305,32 @@ public class Maestro {
                     + "\tLlegada= " + tableros[i].getLlegada()
                     + "\tInicio= " + tableros[i].getTiempoInicio()
                     + "\tFin= " + tableros[i].getTiempoFin()
-                    + "\tTiempo= " + tableros[i].getReinas()
-                    + "\tEn Cola= " + tableros[i].getTiempoCola()
+                    + "\tDuracion= " + tableros[i].getReinas()
+                    + "\tTiempo en Cola= " + tableros[i].getTiempoCola()
                     //+ "\tTableros en Cola= " + master.getCola().size()
                     + "\tMetodo= " + tableros[i].getMetodo());
 
         }
-
+        
+        System.out.println();
+        System.out.println("Duracion Promedio= " + duracionPromedio());
         System.out.println("Retadores Vegas= " + metodoUsado()[0]);
         System.out.println("Retadores deterministicos= " + metodoUsado()[1]);
-        System.out.println("Cola Máxima= " + (master.getColaMax() -1) + " ");
+        System.out.println("Cola Máxima= " + master.getColaMax()  + " ");
         System.out.println("Max Tiempo en Cola= " + maxMinEspera()[0]);
         System.out.println("Min Tiempo en Cola= " + maxMinEspera()[1]);
         System.out.println("Tiempo Promedio de Espera= " + esperaPromedio());
     }
 
+    public double duracionPromedio(){
+        double suma = 0;
+        for(Tablero t : tableros )
+        {
+            suma += t.getReinas();
+        }
+        return suma/tableros.length;
+    }
+    
     public void mostrarSoluciones() {
         int i= 1;
         for (Tablero t : tableros)
